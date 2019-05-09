@@ -36,30 +36,30 @@ public class RevisionNotesArrayAdapter extends ArrayAdapter<Note> {
 		tvNote = rowView.findViewById(R.id.textViewNote);
 
 		Note note = notes.get(position);
-		String theStar = (String.valueOf(note.getStars()));
+		int theStar = note.getStars();
 
 		tvNote.setText(note.getNoteContent());
 
 		//Check if the property for starts >= 5, if so, "light" up the stars
-		if (theStar.equals("5")) {
+		if (theStar == 5) {
 			iv5.setImageResource(android.R.drawable.btn_star_big_on);
 			iv4.setImageResource(android.R.drawable.btn_star_big_on);
 			iv3.setImageResource(android.R.drawable.btn_star_big_on);
 			iv2.setImageResource(android.R.drawable.btn_star_big_on);
 			iv1.setImageResource(android.R.drawable.btn_star_big_on);
-		} else if (theStar.equals("4")) {
+		} else if (theStar == 4) {
 			iv5.setImageResource(android.R.drawable.btn_star_big_off);
 			iv4.setImageResource(android.R.drawable.btn_star_big_on);
 			iv3.setImageResource(android.R.drawable.btn_star_big_on);
 			iv2.setImageResource(android.R.drawable.btn_star_big_on);
 			iv1.setImageResource(android.R.drawable.btn_star_big_on);
-		} else if (theStar.equals("3")) {
+		} else if (theStar == 3) {
 			iv5.setImageResource(android.R.drawable.btn_star_big_off);
 			iv4.setImageResource(android.R.drawable.btn_star_big_off);
 			iv3.setImageResource(android.R.drawable.btn_star_big_on);
 			iv2.setImageResource(android.R.drawable.btn_star_big_on);
 			iv1.setImageResource(android.R.drawable.btn_star_big_on);
-		} else if (theStar.equals("2")) {
+		} else if (theStar == 2) {
             iv5.setImageResource(android.R.drawable.btn_star_big_off);
             iv4.setImageResource(android.R.drawable.btn_star_big_off);
             iv3.setImageResource(android.R.drawable.btn_star_big_off);

@@ -20,7 +20,9 @@ public class SecondActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_second);
 		//TODO implement the Custom ListView
+
 
 		lv = findViewById(R.id.lv);
 		theNote = findViewById(R.id.textViewNote);

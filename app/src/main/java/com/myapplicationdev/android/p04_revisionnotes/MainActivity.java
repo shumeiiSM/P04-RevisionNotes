@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -54,11 +55,12 @@ public class MainActivity extends AppCompatActivity {
 
                 rgStar = findViewById(R.id.radioGroupStars);
                 int selectedButtonId = rgStar.getCheckedRadioButtonId();
+                RadioButton rb = findViewById(selectedButtonId);
 
                 DBHelper db = new DBHelper(MainActivity.this);
 
                 // Insert a task
-                db.insertNote(etNote.getText().toString(), selectedButtonId);
+//                db.insertNote(etNote.getText().toString(), Integer.parseInt(rb.getText()));
                 db.close();
 
                 Toast.makeText(MainActivity.this, "inserted", Toast.LENGTH_LONG).show();
