@@ -14,7 +14,7 @@ public class RevisionNotesArrayAdapter extends ArrayAdapter<Note> {
 	Context context;
 	ArrayList<Note> notes;
 	int resource;
-	private TextView tvNote;
+	TextView tvNote;
 	ImageView iv1, iv2, iv3, iv4, iv5;
 
 	public RevisionNotesArrayAdapter(Context context, int resource, ArrayList<Note> notes) {
@@ -31,17 +31,21 @@ public class RevisionNotesArrayAdapter extends ArrayAdapter<Note> {
 
 		View rowView = inflater.inflate(resource, parent, false);
 
-		//Match the UI components with Java variables
-
 		tvNote = rowView.findViewById(R.id.textViewNote);
+		iv1 = rowView.findViewById(R.id.imageView1star);
+		iv2 = rowView.findViewById(R.id.imageView2star);
+		iv3 = rowView.findViewById(R.id.imageView3star);
+		iv4 = rowView.findViewById(R.id.imageView4star);
+		iv5 = rowView.findViewById(R.id.imageView5star);
 
+		//Match the UI components with Java variables
 		Note note = notes.get(position);
 		int theStar = note.getStars();
 
 		tvNote.setText(note.getNoteContent());
 
 		//Check if the property for starts >= 5, if so, "light" up the stars
-		if (theStar == 5) {
+		if (theStar >= 5) {
 			iv5.setImageResource(android.R.drawable.btn_star_big_on);
 			iv4.setImageResource(android.R.drawable.btn_star_big_on);
 			iv3.setImageResource(android.R.drawable.btn_star_big_on);
@@ -65,13 +69,19 @@ public class RevisionNotesArrayAdapter extends ArrayAdapter<Note> {
             iv3.setImageResource(android.R.drawable.btn_star_big_off);
             iv2.setImageResource(android.R.drawable.btn_star_big_on);
             iv1.setImageResource(android.R.drawable.btn_star_big_on);
-        } else {
+        } else if (theStar == 1) {
             iv5.setImageResource(android.R.drawable.btn_star_big_off);
             iv4.setImageResource(android.R.drawable.btn_star_big_off);
             iv3.setImageResource(android.R.drawable.btn_star_big_off);
             iv2.setImageResource(android.R.drawable.btn_star_big_off);
             iv1.setImageResource(android.R.drawable.btn_star_big_on);
-        }
+        } else {
+			iv5.setImageResource(android.R.drawable.btn_star_big_off);
+			iv4.setImageResource(android.R.drawable.btn_star_big_off);
+			iv3.setImageResource(android.R.drawable.btn_star_big_off);
+			iv2.setImageResource(android.R.drawable.btn_star_big_off);
+			iv1.setImageResource(android.R.drawable.btn_star_big_off);
+		}
 
 		return rowView;
 	}

@@ -17,12 +17,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     EditText etNote;
-    RadioGroup rgStar;
     Button btnInsert, btnShowList;
-
-    ArrayList<Note> al;
-    ArrayAdapter aa;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +48,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                rgStar = findViewById(R.id.radioGroupStars);
+                RadioGroup rgStar = findViewById(R.id.radioGroupStars);
                 int selectedButtonId = rgStar.getCheckedRadioButtonId();
                 RadioButton rb = findViewById(selectedButtonId);
 
                 DBHelper db = new DBHelper(MainActivity.this);
 
                 // Insert a task
-//                db.insertNote(etNote.getText().toString(), Integer.parseInt(rb.getText()));
+                db.insertNote(etNote.getText().toString(), Integer.parseInt(rb.getText().toString()));
                 db.close();
 
                 Toast.makeText(MainActivity.this, "inserted", Toast.LENGTH_LONG).show();
@@ -72,28 +67,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                DBHelper db = new DBHelper(MainActivity.this);
-
-                // Insert a task
-                ArrayList<Note> data = db.getAllNotes();
-                db.close();
-
-
-                for (int i = 0; i < data.size(); i++) {
-                    Log.d("Database Content", data.get(i).getId() +". "+data.get(i).getNoteContent() +". " + data.get(i).getStars());
+//                DBHelper db = new DBHelper(MainActivity.this);
+//
+//                // Insert a task
+//                ArrayList<Note> data = db.getAllNotes();
+//                db.close();
+//
+//
+//                for (int i = 0; i < data.size(); i++) {
+//                    Log.d("Database Content", data.get(i).getId() +". "+data.get(i).getNoteContent() +". " + data.get(i).getStars());
 //                    int theID = data.get(i).getId();
 //                    String theNote = data.get(i).getNoteContent();
 //                    int theStar = data.get(i).getStars();
-
-                    //Intent intent = new Intent (getBaseContext(), SecondActivity.class);
+//
+//                    Intent intent = new Intent (getBaseContext(), SecondActivity.class);
 //                    intent.putExtra("id", theID);
 //                    intent.putExtra("note", theNote);
 //                    intent.putExtra("star", theStar);
-                    //startActivity(intent);
-                }
+//                    startActivity(intent);
+//                }
 
-                Intent intent = new Intent (getBaseContext(), SecondActivity.class);
-                startActivity(intent);
+                Intent i = new Intent (getBaseContext(), SecondActivity.class);
+                startActivity(i);
             }
         });
 

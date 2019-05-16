@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class SecondActivity extends AppCompatActivity {
 
 	ListView lv;
-	TextView theNote;
 	ArrayAdapter aa;
-	ArrayList<Note> note;
+
+	//ArrayList<Note> note;
 
 
 	@Override
@@ -23,18 +23,18 @@ public class SecondActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_second);
 		//TODO implement the Custom ListView
 
+		DBHelper db = new DBHelper(this);
+		db.getWritableDatabase();
+		db.close();
 
 		lv = findViewById(R.id.lv);
-		theNote = findViewById(R.id.textViewNote);
 
-		note = new ArrayList<Note>();
+		ArrayList<Note> data =  db.getAllNotes();
+		db.close();
 
-		note.add(new Note(1, "Revision Note #1", 3));
-		note.add(new Note(2, "Revision Note #2", 4));
-		note.add(new Note(3, "Revision Note #3", 1));
-
-		aa = new RevisionNotesArrayAdapter(this, R.layout.row, note);
+		aa = new RevisionNotesArrayAdapter(this, R.layout.row, data);
 		lv.setAdapter(aa);
+
 
 //		Intent i = getIntent();
 //		Integer id = i.getIntExtra("id", 0);
@@ -43,26 +43,24 @@ public class SecondActivity extends AppCompatActivity {
 //
 //		Note note1 = new Note(id, note, star);
 
-		DBHelper db = new DBHelper(SecondActivity.this);
-
-		// Insert a task
-		ArrayList<Note> data = db.getAllNotes();
-		db.close();
-
-		for (int i = 0; i < data.size(); i++) {
-			int theID = data.get(i).getId();
-			String theNote = data.get(i).getNoteContent();
-			int theStar = data.get(i).getStars();
-
-			Note note1 = new Note(theID, theNote, theStar);
-			note.add(note1);
-			aa = new RevisionNotesArrayAdapter(this, R.layout.row, note);
-			lv.setAdapter(aa);
-		}
+//		DBHelper db = new DBHelper(SecondActivity.this);
+//
+//		// Insert a task
+//		ArrayList<Note> data = db.getAllNotes();
+//		db.close();
+//
+//		for (int i = 0; i < data.size(); i++) {
+//			int theID = data.get(i).getId();
+//			String theNote = data.get(i).getNoteContent();
+//			int theStar = data.get(i).getStars();
+//
+//			Note note1 = new Note(theID, theNote, theStar);
+//			note.add(note1);
+//			aa = new RevisionNotesArrayAdapter(this, R.layout.row, note);
+//			lv.setAdapter(aa);
+//		}
 
 
 
 	}
-
-
 }
